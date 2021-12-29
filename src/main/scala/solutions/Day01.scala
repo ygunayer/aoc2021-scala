@@ -37,7 +37,7 @@ object Day01 {
     }
 
     override def solve(): Int =
-      Utils.readInput("day01-2.txt")
+      Utils.readInput("day01.txt")
         .map(_.toInt)
         .foldLeft(Counter(0, 0, RingBuffer.withCapacity(3))) { (counter, current) => counter + current }
         .increased

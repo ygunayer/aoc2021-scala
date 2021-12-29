@@ -12,7 +12,8 @@ object Solution {
   val solutions: Map[ChallengeKey, Solution] = Map(
     (1, 1) -> Day01.Solution1(),
     (1, 2) -> Day01.Solution1(),
-    (2, 1) -> Day02.Solution1()
+    (2, 1) -> Day02.Solution1(),
+    (2, 2) -> Day02.Solution2()
   )
 
   def solve(day: Int, challenge: Int)(implicit ec: ExecutionContext): Future[Int] =
