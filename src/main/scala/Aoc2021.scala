@@ -1,6 +1,6 @@
 package com.yalingunayer.aoc2021
 
-import challenges.*
+import com.yalingunayer.aoc2021.solutions.Solution
 
 import java.util.concurrent.{Executors, ThreadPoolExecutor}
 import scala.concurrent.ExecutionContext
@@ -10,14 +10,9 @@ object Aoc2021 {
   def main(args: Array[String]): Unit = {
     implicit val challengeExecutorPool = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(1))
 
-    val result = for {
-      day <- args.headOption.map(_.toInt)
-      solution <- solveForDay(day)
-    } yield solution
-
-    result match {
-      case Some(future) =>
-        future onComplete {
+    args.take(2).map(_.toInt) match {
+      case Array(day, challenge) =>
+        Solution.solve(day, challenge).onComplete {
           case Success(output) =>
             println(f"Solution output: $output")
 
@@ -26,7 +21,7 @@ object Aoc2021 {
             System.exit(1)
         }
 
-      case _ => println("No solution found")
+      case _ => throw new IllegalArgumentException("Please specify the day and challenge numbers")
     }
   }
 }
